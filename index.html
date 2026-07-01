@@ -7,7 +7,16 @@
   <meta name="description" content="A. B. Electrical & Maintenance — a reliable, local, NAPIT-registered and TrustMark electrician serving Nottinghamshire, Derbyshire and the East Midlands. Domestic & commercial electrical and maintenance work, free quotes at competitive prices." />
   <meta name="theme-color" content="#003A65" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#081018" media="(prefers-color-scheme: dark)" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='44' ry='33' fill='none' stroke='%2317A2DC' stroke-width='8' transform='rotate(-18 50 50)'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='36' font-weight='800' font-family='Arial' fill='%23003A65'%3EAB%3C/text%3E%3C/svg%3E" />
+  <link rel="canonical" href="https://adrianeyre.github.io/ab-electrical/" />
+
+  <!-- Favicons & device icons -->
+  <link rel="icon" href="favicon.ico" sizes="32x32" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="assets/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
+  <meta name="apple-mobile-web-app-title" content="A. B. Electrical" />
+  <link rel="manifest" href="site.webmanifest" />
 
   <!-- Prevent theme flash: apply stored preference before paint -->
   <script>
@@ -512,56 +521,102 @@
   </button>
 
   <!-- ========================= COOKIE CONSENT ========================= -->
-  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie notice" hidden>
     <span class="cb-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-4-4 3 3 0 0 1-3-3 3 3 0 0 0-3-3z"/><circle cx="9" cy="12" r="1"/><circle cx="14" cy="15" r="1"/><circle cx="15" cy="9" r="1"/></svg>
     </span>
     <div class="cb-text">
       <b>We use cookies</b>
-      This site uses essential storage to remember your theme choice, and — with your consent — an
-      embedded Google Map on our contact section. See our <a href="#" data-cookie-open>cookie policy</a>.
+      We use a few essential and functional cookies (and similar local storage) to keep this site
+      working and to remember your preferences, such as your theme choice. We don't use any tracking,
+      analytics or advertising cookies. See our
+      <button type="button" class="cookie-link" data-cookie-open>Cookie Policy</button>.
     </div>
     <div class="cb-actions">
-      <button type="button" class="btn btn-ghost" data-consent="necessary">Necessary only</button>
-      <button type="button" class="btn btn-primary" data-consent="all">Accept all</button>
+      <button type="button" class="btn btn-ghost" data-cookie-open>Learn more</button>
+      <button type="button" class="btn btn-primary" id="cookieAccept">Accept</button>
     </div>
   </div>
 
   <!-- ========================= COOKIE POLICY ========================= -->
   <dialog class="cookie-dialog" id="cookieDialog" aria-labelledby="cookieTitle">
     <div class="cd-head">
-      <h3 id="cookieTitle">Cookies &amp; privacy</h3>
+      <h3 id="cookieTitle">Cookie Policy</h3>
       <button type="button" class="cd-close" data-cookie-close aria-label="Close cookie policy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
     <div class="cd-body">
-      <p>We keep tracking to a minimum. This website stores only what's needed to work, plus one
-        optional embedded map. We don't use advertising or analytics cookies. You can change your
-        choice at any time from the <em>Cookie policy</em> link in the footer.</p>
+      <p class="policy-updated">Last updated: July 2026</p>
 
-      <div class="cookie-opt">
-        <div class="co-txt">
-          <b>Strictly necessary</b>
-          <p>A small amount of local storage remembers your light/dark theme preference and records
-            your cookie choice so we don't ask again. These never leave your device.</p>
-        </div>
-        <span class="always">Always on</span>
+      <h4>About this policy</h4>
+      <p>This policy explains how A. B. Electrical &amp; Maintenance uses cookies and similar
+        technologies (such as your browser's local storage) on this website. Cookies and local storage
+        are small pieces of data saved on your device that help a website function and remember your
+        choices.</p>
+
+      <h4>How we use them</h4>
+      <p>We keep things deliberately minimal. This website uses only <strong>essential</strong> and
+        <strong>functional</strong> storage. We do <strong>not</strong> use any analytics, tracking,
+        profiling or advertising cookies, and we do not share this information with third parties for
+        marketing.</p>
+
+      <h4>What we store</h4>
+      <div class="cookie-table-scroll">
+        <table class="cookie-table">
+          <caption>Items this site may save in your browser's local storage.</caption>
+          <thead>
+            <tr><th scope="col">Name</th><th scope="col">Type</th><th scope="col">Purpose</th><th scope="col">Expiry</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>ab-theme</code></td>
+              <td>Functional</td>
+              <td>Remembers your chosen colour theme (light, dark or system).</td>
+              <td>Until you clear it</td>
+            </tr>
+            <tr>
+              <td><code>ab-cookie-consent</code></td>
+              <td>Essential</td>
+              <td>Remembers that you've acknowledged this cookie notice, so we don't show it again.</td>
+              <td>Until you clear it</td>
+            </tr>
+            <tr>
+              <td><code>ab-maps-consent</code></td>
+              <td>Functional</td>
+              <td>Remembers that you chose to load the embedded Google Map on the contact section.</td>
+              <td>Until you clear it</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div class="cookie-opt">
-        <input type="checkbox" id="optMaps" />
-        <label class="co-txt" for="optMaps">
-          <b>Embedded map (Google Maps)</b>
-          <p>Loads an interactive Google Map on our contact section. Google may set its own cookies.
-            Leave off and we'll show a static prompt instead.</p>
-        </label>
-      </div>
+      <h4>Third-party services</h4>
+      <p>We load fonts from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>
+        to display this site's typography. To deliver the fonts, Google may process your IP address;
+        Google does not set cookies on this site for that purpose.</p>
+      <p>Our contact section can show an interactive <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Google Maps</a>
+        embed. Because Google may set its own cookies, the map does <strong>not</strong> load until you
+        choose to enable it with the "Enable map" button on that section. If you don't enable it, no
+        map cookies are set. No other third-party services are used on this page.</p>
+
+      <h4>Managing cookies and storage</h4>
+      <p>You can clear or block cookies and local storage at any time through your browser settings —
+        most browsers also let you do this per website. Blocking functional storage won't stop the site
+        working, but it means your preferences (like your theme choice) won't be remembered between
+        visits.</p>
+
+      <h4>Changes to this policy</h4>
+      <p>We may update this policy from time to time to reflect changes to the site or to legal
+        requirements. Any changes will be posted on this page with a revised "last updated" date.</p>
+
+      <h4>Contact us</h4>
+      <p>If you have any questions about this policy or how we handle your data, email us at
+        <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a> or call
+        <a href="tel:01623431440">01623&nbsp;431440</a>.</p>
     </div>
     <div class="cd-foot">
-      <button type="button" class="btn btn-ghost" data-consent="necessary">Reject optional</button>
-      <button type="button" class="btn btn-ghost" id="cookieSave">Save preferences</button>
-      <button type="button" class="btn btn-primary" data-consent="all">Accept all</button>
+      <button type="button" class="btn btn-primary" data-cookie-close>Got it</button>
     </div>
   </dialog>
 

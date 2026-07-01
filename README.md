@@ -21,11 +21,27 @@ the wider East Midlands for over 13 years.
 
 ```
 index.html            # markup + content + SEO/meta, inline anti-flash theme script
+favicon.ico           # multi-size (16/32/48) tab icon
+robots.txt            # crawler rules + sitemap pointer
+sitemap.xml           # single-page sitemap
+site.webmanifest      # PWA manifest (name, colours, icons)
 assets/
   styles.css          # design tokens, theming, layout, animations
-  script.js           # theme, nav, scroll reveal, counters, scrollspy, form
+  script.js           # theme, nav, scroll reveal, counters, scrollspy, form, cookie consent
+  favicon.svg         # scalable brand mark
+  favicon-16/32/48.png
+  apple-touch-icon.png    # 180×180 iOS home-screen icon
+  icon-192/512.png        # PWA icons ("any")
+  icon-maskable-512.png   # PWA maskable icon (safe-zone padded)
   images/             # image assets
 ```
+
+## Privacy & cookies
+
+The site uses only essential/functional local storage (theme + cookie acknowledgement) and shows a
+dismissable notice with a full **Cookie Policy** modal. The Google Maps embed on the contact section
+is **not loaded until the visitor clicks "Enable map"**, so no third-party map cookies are set without
+consent. There are no analytics, tracking or advertising cookies.
 
 ## Run locally
 

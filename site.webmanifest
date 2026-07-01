@@ -1,0 +1,15 @@
+{
+  "name": "A. B. Electrical & Maintenance",
+  "short_name": "A. B. Electrical",
+  "description": "Reliable, local, NAPIT-registered & TrustMark-approved electricians serving Nottinghamshire, Derbyshire and the East Midlands.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#003A65",
+  "theme_color": "#003A65",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

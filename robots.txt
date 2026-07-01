@@ -1,0 +1,7 @@
+# robots.txt for A. B. Electrical & Maintenance
+# Allow all well-behaved crawlers to index the whole site.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://adrianeyre.github.io/ab-electrical/sitemap.xml

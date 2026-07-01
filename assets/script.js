@@ -143,64 +143,52 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- Cookie consent + policy ---------- */
-  var CONSENT_KEY = 'ab-cookie-consent';
+  var CONSENT_KEY = 'ab-cookie-consent';   // banner acknowledgement
+  var MAPS_KEY = 'ab-maps-consent';        // opt-in for the embedded Google Map
   var banner = document.getElementById('cookieBanner');
   var dialog = document.getElementById('cookieDialog');
   var mapWrap = document.getElementById('mapWrap');
-  var optMaps = document.getElementById('optMaps');
 
-  function getConsent() {
-    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
-  }
-  function storeConsent(v) {
-    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
-  }
-  function loadMap() {
-    if (!mapWrap) return;
-    var frame = mapWrap.querySelector('iframe[data-src]');
-    if (frame && !frame.getAttribute('src')) { frame.setAttribute('src', frame.getAttribute('data-src')); }
-    mapWrap.classList.add('consented');
-  }
-  function unloadMap() {
-    if (!mapWrap || !mapWrap.classList.contains('consented')) return;
-    var frame = mapWrap.querySelector('iframe[data-src]');
-    if (frame) { var clone = frame.cloneNode(true); clone.removeAttribute('src'); frame.parentNode.replaceChild(clone, frame); }
-    mapWrap.classList.remove('consented');
-  }
-  function applyConsent(v) { if (v === 'all') loadMap(); else unloadMap(); }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
-  function setConsent(v) {
-    storeConsent(v);
-    applyConsent(v);
-    if (banner) banner.classList.remove('show');
-    if (optMaps) optMaps.checked = (v === 'all');
-    if (dialog && dialog.open) dialog.close();
+  /* Banner (simple acknowledgement) */
+  function hideBanner() { if (banner) { banner.classList.remove('show'); banner.hidden = true; } }
+  if (banner && lsGet(CONSENT_KEY) !== 'acknowledged') {
+    banner.hidden = false;
+    requestAnimationFrame(function () { banner.classList.add('show'); });
   }
+  var acceptBtn = document.getElementById('cookieAccept');
+  if (acceptBtn) acceptBtn.addEventListener('click', function () {
+    lsSet(CONSENT_KEY, 'acknowledged');
+    hideBanner();
+  });
+
+  /* Policy dialog */
   function openDialog() {
     if (!dialog) return;
-    if (optMaps) optMaps.checked = (getConsent() === 'all');
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
   }
-
-  var stored = getConsent();
-  if (stored === 'all' || stored === 'necessary') { applyConsent(stored); }
-  else if (banner) { banner.classList.add('show'); }
-
-  document.querySelectorAll('[data-consent]').forEach(function (btn) {
-    btn.addEventListener('click', function () { setConsent(btn.getAttribute('data-consent')); });
-  });
   document.querySelectorAll('[data-cookie-open]').forEach(function (el) {
     el.addEventListener('click', function (e) { e.preventDefault(); openDialog(); });
   });
   document.querySelectorAll('[data-cookie-close]').forEach(function (el) {
     el.addEventListener('click', function () { if (dialog) dialog.close(); });
   });
-  var saveBtn = document.getElementById('cookieSave');
-  if (saveBtn) saveBtn.addEventListener('click', function () {
-    setConsent(optMaps && optMaps.checked ? 'all' : 'necessary');
-  });
-  var enableMapBtn = document.getElementById('enableMap');
-  if (enableMapBtn) enableMapBtn.addEventListener('click', function () { setConsent('all'); });
   if (dialog) dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+
+  /* Embedded map: separate, in-context opt-in */
+  function loadMap() {
+    if (!mapWrap) return;
+    var frame = mapWrap.querySelector('iframe[data-src]');
+    if (frame && !frame.getAttribute('src')) { frame.setAttribute('src', frame.getAttribute('data-src')); }
+    mapWrap.classList.add('consented');
+  }
+  if (lsGet(MAPS_KEY) === 'granted') loadMap();
+  var enableMapBtn = document.getElementById('enableMap');
+  if (enableMapBtn) enableMapBtn.addEventListener('click', function () {
+    lsSet(MAPS_KEY, 'granted');
+    loadMap();
+  });
 })();

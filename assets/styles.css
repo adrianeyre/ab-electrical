@@ -628,6 +628,7 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: transform .4s var(--ease), opacity .4s var(--ease), visibility .4s;
 }
+.cookie-banner[hidden] { display: none; }
 .cookie-banner.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; pointer-events: auto; }
 .cookie-banner .cb-icon { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center;
   background: color-mix(in srgb, var(--brand-cyan) 16%, transparent); color: var(--accent); }
@@ -649,16 +650,24 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
   display: grid; place-items: center; transition: border-color .2s var(--ease), transform .2s var(--ease); }
 .cookie-dialog .cd-close:hover { border-color: var(--brand-cyan); transform: translateY(-2px); }
 .cookie-dialog .cd-close svg { width: 18px; height: 18px; }
-.cookie-dialog .cd-body { padding: 1rem 1.7rem 0; max-height: min(60vh, 520px); overflow-y: auto; }
+.cookie-dialog .cd-body { padding: .4rem 1.7rem 0; max-height: min(66vh, 560px); overflow-y: auto; }
 .cookie-dialog .cd-body p { color: var(--text-muted); font-size: .95rem; }
-.cookie-opt { display: flex; gap: .9rem; align-items: flex-start; padding: 1rem 0; border-top: 1px solid var(--border); }
-.cookie-opt:first-of-type { border-top: none; }
-.cookie-opt .co-txt { flex: 1; }
-.cookie-opt b { font-family: 'Poppins', sans-serif; font-size: .98rem; }
-.cookie-opt p { margin: .25rem 0 0; font-size: .88rem; color: var(--text-muted); }
-.cookie-opt label.co-txt { cursor: pointer; }
-.cookie-opt input { width: 20px; height: 20px; margin-top: .2rem; accent-color: var(--accent); flex: none; cursor: pointer; }
-.cookie-opt .always { font-size: .82rem; font-weight: 700; color: var(--success); white-space: nowrap; margin-top: .2rem; }
+.cookie-dialog .cd-body h4 { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; margin: 1.4rem 0 .4rem; color: var(--text); }
+.cookie-dialog .cd-body strong { color: var(--text); font-weight: 600; }
+.policy-updated { font-size: .82rem; font-weight: 600; letter-spacing: .02em; color: var(--text-faint); text-transform: uppercase; margin: .2rem 0 .4rem; }
+.cookie-link { font: inherit; background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.cookie-link:hover { color: var(--accent-hover); }
+
+/* Storage table */
+.cookie-table-scroll { overflow-x: auto; margin: .6rem 0 .2rem; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.cookie-table { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 460px; }
+.cookie-table caption { text-align: left; caption-side: bottom; color: var(--text-faint); font-size: .78rem; padding: .5rem .2rem 0; }
+.cookie-table th, .cookie-table td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.cookie-table thead th { background: var(--surface-2); font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text); white-space: nowrap; }
+.cookie-table tbody tr:last-child td { border-bottom: none; }
+.cookie-table td { color: var(--text-muted); }
+.cookie-table code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: .82rem; color: var(--accent); background: color-mix(in srgb, var(--brand-cyan) 12%, transparent); padding: .1rem .35rem; border-radius: 6px; white-space: nowrap; }
 .cookie-dialog .cd-foot { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: flex-end; padding: 1.3rem 1.7rem 1.6rem; }
 .cookie-dialog .cd-foot .btn { min-height: 44px; padding: .6rem 1.2rem; font-size: .92rem; }
 
