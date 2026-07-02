@@ -230,13 +230,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-header.scrolled { border-bottom-color: var(--nav-border); box-shadow: var(--shadow-sm); }
 .nav { display: flex; align-items: center; gap: 1rem; min-height: 74px; }
 
-.brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--text); font-family: 'Poppins', sans-serif; }
+.brand { display: inline-flex; align-items: center; color: var(--text); font-family: 'Poppins', sans-serif; }
 .brand:hover { color: var(--text); }
-.logo-mark { width: 46px; height: 46px; flex: none; }
-.logo-mark .swoosh { stroke: var(--brand-cyan); }
-.brand-text { display: flex; flex-direction: column; line-height: 1.02; }
-.brand-text b { font-size: 1.12rem; font-weight: 800; letter-spacing: .01em; }
-.brand-text span { font-size: .64rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--text-muted); }
+.brand-logo { height: 50px; width: auto; flex: none; display: block; }
+.brand--footer .brand-logo { height: 58px; }
+
+/* Light/dark logo swap — mirrors the theme-button icon pattern.
+   Default (system light or manual light) shows the dark-ink logo; the
+   white-ink variant appears on the site's dark surfaces. */
+.brand-logo--dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .brand-logo--light { display: none; }
+  :root:not([data-theme]) .brand-logo--dark  { display: block; }
+}
+[data-theme="dark"] .brand-logo--light { display: none; }
+[data-theme="dark"] .brand-logo--dark  { display: block; }
+[data-theme="light"] .brand-logo--light { display: block; }
+[data-theme="light"] .brand-logo--dark  { display: none; }
 
 .nav-spacer { flex: 1; }
 .nav-links { display: flex; align-items: center; gap: .35rem; }
@@ -340,9 +350,26 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid; place-items: center; padding: 12%;
   animation: bob 6s var(--ease) infinite alternate;
 }
-.emblem-card .logo-mark { width: 100%; height: auto; }
-.emblem-card .logo-mark .swoosh { stroke: #6fd0f5; }
-.emblem-card .logo-mark text { fill: #fff; }
+.emblem-logo { position: relative; width: 100%; }
+.emblem-text, .emblem-swoosh { display: block; width: 100%; height: auto; }
+/* the wordmark sizes the box; the real cyan swoosh sits on top and draws in */
+.emblem-swoosh { position: absolute; top: 0; left: 0; }
+
+/* Draw-in: reveal the real swoosh along its arc with an animated conic mask.
+   Centre + start/sweep derived from the actual swoosh geometry so it lands
+   exactly where it belongs in the logo. Fully shown by default (reduced-motion
+   and no @property support both fall back to the finished state). White stops
+   work whether the UA treats the mask as alpha or luminance. */
+@property --swoosh-sweep { syntax: '<angle>'; inherits: false; initial-value: 274deg; }
+.emblem-swoosh {
+  --swoosh-sweep: 274deg;
+  -webkit-mask-image: conic-gradient(from 264deg at 60% 38%, #fff var(--swoosh-sweep), transparent 0deg);
+          mask-image: conic-gradient(from 264deg at 60% 38%, #fff var(--swoosh-sweep), transparent 0deg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .emblem-swoosh { animation: swoosh-draw 1.5s cubic-bezier(.22, .61, .36, 1) .35s both; }
+  @keyframes swoosh-draw { from { --swoosh-sweep: 0deg; } to { --swoosh-sweep: 274deg; } }
+}
 .spark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--brand-cyan); box-shadow: 0 0 16px 4px rgba(23,162,220,.8); }
 .spark.s1 { top: 12%; right: 16%; animation: pulse 2.4s ease-in-out infinite; }
 .spark.s2 { bottom: 18%; left: 12%; animation: pulse 2.4s ease-in-out .8s infinite; }
