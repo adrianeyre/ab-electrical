@@ -630,6 +630,15 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
   .values { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+  /* Centre section headers on mobile (About + Contact match the other sections) */
+  #contact .section-head { text-align: center; margin-inline: auto; }
+  #contact .section-head .eyebrow { justify-content: center; }
+
+  /* About: centre the whole copy column on mobile */
+  #about .about-copy { text-align: center; }
+  #about .about-copy .eyebrow { justify-content: center; }
+  #about .value { justify-content: center; }
 }
 @media (max-width: 400px) {
   .hero-stats { gap: 1.2rem 1.8rem; }
