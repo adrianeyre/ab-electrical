@@ -350,10 +350,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid; place-items: center; padding: 12%;
   animation: bob 6s var(--ease) infinite alternate;
 }
-.emblem-logo { position: relative; width: 100%; }
-.emblem-text, .emblem-swoosh { display: block; width: 100%; height: auto; }
-/* the wordmark sizes the box; the real cyan swoosh sits on top and draws in */
-.emblem-swoosh { position: absolute; top: 0; left: 0; }
+.emblem-logo { position: relative; width: 100%; aspect-ratio: 621 / 579; }
+/* crisp vector wordmark underneath; the real cyan swoosh sits on top and draws in */
+.emblem-text, .emblem-swoosh { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: contain; }
 
 /* Draw-in: reveal the real swoosh along its arc with an animated conic mask.
    Centre + start/sweep derived from the actual swoosh geometry so it lands
@@ -367,7 +366,7 @@ ul { margin: 0; padding: 0; list-style: none; }
           mask-image: conic-gradient(from 264deg at 60% 38%, #fff var(--swoosh-sweep), transparent 0deg);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .emblem-swoosh { animation: swoosh-draw 1.5s cubic-bezier(.22, .61, .36, 1) .35s both; }
+  .emblem-swoosh { animation: swoosh-draw 1.1s linear .35s both; }
   @keyframes swoosh-draw { from { --swoosh-sweep: 0deg; } to { --swoosh-sweep: 274deg; } }
 }
 .spark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--brand-cyan); box-shadow: 0 0 16px 4px rgba(23,162,220,.8); }
