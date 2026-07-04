@@ -9,6 +9,35 @@
   <meta name="theme-color" content="#081018" media="(prefers-color-scheme: dark)" />
   <link rel="canonical" href="https://adrianeyre.github.io/ab-electrical/" />
 
+  <!-- Crawling / indexing directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="A. B. Electrical &amp; Maintenance" />
+
+  <!-- Local / geo signals -->
+  <meta name="geo.region" content="GB-NTT" />
+  <meta name="geo.placename" content="Nottinghamshire, Derbyshire, East Midlands" />
+  <meta name="ICBM" content="53.1360, -1.2000" />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="A. B. Electrical &amp; Maintenance" />
+  <meta property="og:title" content="A. B. Electrical &amp; Maintenance | Reliable Local Electricians — Nottinghamshire &amp; Derbyshire" />
+  <meta property="og:description" content="Reliable, local, NAPIT-registered &amp; TrustMark-approved electricians serving Nottinghamshire, Derbyshire and the East Midlands. Domestic &amp; commercial work, free quotes at competitive prices." />
+  <meta property="og:url" content="https://adrianeyre.github.io/ab-electrical/" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content="https://adrianeyre.github.io/ab-electrical/assets/images/logo.png" />
+  <meta property="og:image:width" content="621" />
+  <meta property="og:image:height" content="579" />
+  <meta property="og:image:alt" content="A. B. Electrical &amp; Maintenance logo" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A. B. Electrical &amp; Maintenance | Reliable Local Electricians" />
+  <meta name="twitter:description" content="NAPIT-registered &amp; TrustMark-approved electricians serving Nottinghamshire, Derbyshire &amp; the East Midlands. Free quotes at competitive prices." />
+  <meta name="twitter:image" content="https://adrianeyre.github.io/ab-electrical/assets/images/logo.png" />
+  <meta name="twitter:image:alt" content="A. B. Electrical &amp; Maintenance logo" />
+
   <!-- Favicons & device icons -->
   <link rel="icon" href="favicon.ico" sizes="32x32" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -35,6 +64,87 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Structured data: local business + services for rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://adrianeyre.github.io/ab-electrical/#website",
+        "url": "https://adrianeyre.github.io/ab-electrical/",
+        "name": "A. B. Electrical & Maintenance",
+        "inLanguage": "en-GB",
+        "publisher": { "@id": "https://adrianeyre.github.io/ab-electrical/#business" }
+      },
+      {
+        "@type": "Electrician",
+        "@id": "https://adrianeyre.github.io/ab-electrical/#business",
+        "name": "A. B. Electrical & Maintenance",
+        "url": "https://adrianeyre.github.io/ab-electrical/",
+        "image": "https://adrianeyre.github.io/ab-electrical/assets/images/logo.png",
+        "logo": "https://adrianeyre.github.io/ab-electrical/assets/images/logo.png",
+        "description": "Reliable, local, NAPIT-registered and TrustMark-approved electrical and maintenance team serving Nottinghamshire, Derbyshire and the East Midlands for over 25 years. Domestic and commercial work with free quotes at competitive prices.",
+        "telephone": "+441623431440",
+        "email": "abelectrical29@hotmail.com",
+        "priceRange": "££",
+        "currenciesAccepted": "GBP",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Nottinghamshire",
+          "addressCountry": "GB"
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Nottinghamshire" },
+          { "@type": "AdministrativeArea", "name": "Derbyshire" },
+          { "@type": "AdministrativeArea", "name": "East Midlands" }
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+441623431440",
+            "contactType": "customer service",
+            "areaServed": "GB",
+            "availableLanguage": "English"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+447816920771",
+            "contactType": "customer service",
+            "areaServed": "GB",
+            "availableLanguage": "English"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/abelectricalnottinghamshire"
+        ],
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "NAPIT Registered" },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "TrustMark Approved" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Electrical & maintenance services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consumer unit upgrades" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete rewires" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wiring for extensions & new-builds" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CCTV installation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Security system installation & servicing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Electric underfloor heating" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Voltage optimisers" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portable appliance testing (PAT)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Electrical testing & inspections (EICR)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landlord checks & certification" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kitchen & bathroom modernisation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shower installation" } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -121,7 +231,7 @@
           </div>
 
           <div class="hero-stats">
-            <div class="stat"><div class="num" data-count="13" data-suffix="+">0</div><div class="lbl">years serving the East Midlands</div></div>
+            <div class="stat"><div class="num" data-count="25" data-suffix="+">0</div><div class="lbl">years serving the East Midlands</div></div>
             <div class="stat"><div class="num" data-count="2" data-plain="Domestic &amp; commercial">2</div><div class="lbl">domestic &amp; commercial work</div></div>
             <div class="stat"><div class="num">Free</div><div class="lbl">quotes at competitive prices</div></div>
           </div>
@@ -189,7 +299,7 @@
         <div class="about-copy reveal">
           <span class="eyebrow">About us</span>
           <h2 id="about-title">Hello — are you looking for a reliable, local electrician?</h2>
-          <p>A B Electrical &amp; Maintenance is a Midlands-based electrical and maintenance team. For over 13 years, our team has carried out a range of domestic and commercial work for individuals, landlords and businesses throughout Nottinghamshire, Derbyshire and the surrounding area.</p>
+          <p>A B Electrical &amp; Maintenance is a Midlands-based electrical and maintenance team. For over 25 years, our team has carried out a range of domestic and commercial work for individuals, landlords and businesses throughout Nottinghamshire, Derbyshire and the surrounding area.</p>
           <p>Quality and attention to detail are non-negotiable in our world, as are respect, safety and trust. Our customers depend on us to do a thorough and compliant job, which is why we are committed to delivering the standard of service and finish we expect to see in our own homes.</p>
 
           <div class="values">
@@ -210,7 +320,7 @@
             <span class="area-tag">&amp; surrounding areas</span>
           </div>
           <div class="years">
-            <b data-count="13" data-suffix="+">0</b>
+            <b data-count="25" data-suffix="+">0</b>
             <span>years of trusted<br />local experience</span>
           </div>
         </div>
@@ -290,7 +400,7 @@
               <p>Government-endorsed quality standard</p>
             </div>
             <div class="trust-item">
-              <div class="tnum" data-count="13" data-suffix="+">0</div>
+              <div class="tnum" data-count="25" data-suffix="+">0</div>
               <b>Years' experience</b>
               <p>Trusted across the East Midlands</p>
             </div>
@@ -459,7 +569,7 @@
             <img class="brand-logo brand-logo--light" src="assets/images/logo.png" alt="A. B. Electrical &amp; Maintenance" width="621" height="579" decoding="async" />
             <img class="brand-logo brand-logo--dark" src="assets/images/logo-dark.png" alt="" aria-hidden="true" width="621" height="579" decoding="async" />
           </a>
-          <p class="lead">A reliable, local, NAPIT-registered &amp; TrustMark-approved electrical and maintenance team, proudly serving Nottinghamshire, Derbyshire and the surrounding area for over 13 years.</p>
+          <p class="lead">A reliable, local, NAPIT-registered &amp; TrustMark-approved electrical and maintenance team, proudly serving Nottinghamshire, Derbyshire and the surrounding area for over 25 years.</p>
           <div class="footer-badges">
             <span class="fbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg> NAPIT Registered</span>
             <span class="fbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> TrustMark Approved</span>
