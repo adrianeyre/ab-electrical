@@ -1,7 +1,6 @@
 # A. B. Electrical & Maintenance — Website
 
-A professional, single-page marketing website for **A. B. Electrical & Maintenance**, a reliable,
-local, NAPIT-registered and TrustMark-approved electrician serving Nottinghamshire, Derbyshire and
+A professional, single-page marketing website for **A. B. Electrical & Maintenance**, a reliable, local,  NAPIT-registered and TrustMark-approved electrician serving Nottinghamshire, Derbyshire and
 the wider East Midlands for over 25 years.
 
 ## Features
