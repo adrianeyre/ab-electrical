@@ -540,7 +540,21 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
 .field.invalid input, .field.invalid textarea { border-color: var(--error); }
 .field.invalid .err { display: flex; }
 .field .err svg { width: 15px; height: 15px; }
-.form-note { font-size: .84rem; color: var(--text-faint); margin-top: -.2rem; }
+.form-alert {
+  display: flex; align-items: flex-start; gap: .85rem;
+  padding: .95rem 1.1rem;
+  background: color-mix(in srgb, var(--brand-cyan) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand-cyan) 40%, transparent);
+  border-left: 4px solid var(--brand-cyan);
+  border-radius: var(--radius-sm);
+}
+.form-alert-ic { flex: none; color: var(--accent); margin-top: .1rem; }
+.form-alert-ic svg { width: 22px; height: 22px; }
+.form-alert-body { display: flex; flex-direction: column; gap: .2rem; font-size: .92rem; line-height: 1.5; color: var(--text); }
+.form-alert-body strong { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--accent); }
+.form-alert-body em { font-style: normal; font-weight: 600; color: var(--accent); }
+
+.form-note { font-size: .84rem; color: var(--text-faint); margin-top: 1rem; }
 .form-status {
   display: none; align-items: center; gap: .6rem; margin-top: 1rem; padding: .9rem 1.1rem;
   border-radius: var(--radius-sm); font-weight: 500; font-size: .95rem;
