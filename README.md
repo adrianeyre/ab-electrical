@@ -7,8 +7,8 @@ the wider East Midlands for over 25 years.
 ## Features
 
 - **Single page**, fully responsive (mobile-first), tested down to 375px.
-- **Light / Dark / System themes** — the toggle cycles through all three; "System" follows the
-  OS preference live. The choice is saved to `localStorage` and applied before first paint (no flash).
+- **Light / Dark / System themes** — the toggle cycles through all three; "System" follows the OS 
+preference live. The choice is saved to `localStorage` and applied before first paint (no flash).
 - **Standout animations** — animated glows and an orbiting logo emblem in the hero, count-up stats,
   scroll-reveal sections, hover micro-interactions, a sticky header with scroll shadow, and a
   back-to-top button. All motion respects `prefers-reduced-motion`.
