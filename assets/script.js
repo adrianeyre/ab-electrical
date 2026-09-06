@@ -1,7 +1,14 @@
 (function () {
   'use strict';
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* True when either the operating system or the in-page Accessibility toggle
+     asks for reduced motion. Read live so a mid-session change takes effect. */
+  function motionReduced() {
+    return motionQuery.matches || root.getAttribute('data-motion') === 'reduce';
+  }
+  var reduceMotion = motionReduced();
 
   /* ---------- Theme: system (default) → light → dark ---------- */
   var themeBtn = document.getElementById('themeBtn');
@@ -32,7 +39,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
   toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    window.scrollTo({ top: 0, behavior: motionReduced() ? 'auto' : 'smooth' });
   });
 
   /* ---------- Mobile menu ---------- */
@@ -43,9 +50,17 @@
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
-  menuBtn.addEventListener('click', function () { setMenu(!panel.classList.contains('open')); });
+  menuBtn.addEventListener('click', function () {
+    var open = !panel.classList.contains('open');
+    setMenu(open);
+    if (open) { var first = panel.querySelector('a'); if (first) first.focus(); }
+  });
   panel.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape' || !panel.classList.contains('open')) return;
+    setMenu(false);
+    menuBtn.focus();
+  });
 
   /* ---------- Scroll reveal ---------- */
   var reveals = document.querySelectorAll('.reveal');
@@ -105,6 +120,7 @@
   /* ---------- Contact form: validation + mailto ---------- */
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
+  var errorSummary = document.getElementById('formErrors');
   function setInvalid(id, bad) {
     var field = document.getElementById('f-' + id);
     field.classList.toggle('invalid', bad);
@@ -122,7 +138,18 @@
     setInvalid('email', !emailOk); if (!emailOk && !firstBad) firstBad = form.email;
     setInvalid('message', !message); if (!message && !firstBad) firstBad = form.message;
 
-    if (firstBad) { firstBad.focus(); status.classList.remove('show'); return; }
+    if (firstBad) {
+      var bad = form.querySelectorAll('.field.invalid').length;
+      if (errorSummary) {
+        errorSummary.textContent = bad === 1
+          ? 'There is 1 problem with this form. Please check the highlighted field.'
+          : 'There are ' + bad + ' problems with this form. Please check the highlighted fields.';
+      }
+      firstBad.focus();
+      status.classList.remove('show');
+      return;
+    }
+    if (errorSummary) errorSummary.textContent = '';
 
     var subject = 'Website enquiry from ' + name;
     var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
@@ -190,5 +217,51 @@
   if (enableMapBtn) enableMapBtn.addEventListener('click', function () {
     lsSet(MAPS_KEY, 'granted');
     loadMap();
+  });
+
+  /* ---------- Accessibility statement + motion preference ---------- */
+  var MOTION_KEY = 'ab-motion';
+  var a11yDialog = document.getElementById('a11yDialog');
+  var motionToggle = document.getElementById('motionToggle');
+  var motionState = document.getElementById('motionState');
+
+  function applyMotion(reduce) {
+    if (reduce) root.setAttribute('data-motion', 'reduce');
+    else root.removeAttribute('data-motion');
+    if (motionToggle) motionToggle.checked = reduce;
+    if (motionState) motionState.textContent = reduce ? 'On' : 'Off';
+    /* Anything still waiting to fade in should just be shown. */
+    if (reduce) {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+  }
+  applyMotion(lsGet(MOTION_KEY) === 'reduce');
+
+  if (motionToggle) motionToggle.addEventListener('change', function () {
+    var reduce = motionToggle.checked;
+    applyMotion(reduce);
+    if (reduce) lsSet(MOTION_KEY, 'reduce');
+    else { try { localStorage.removeItem(MOTION_KEY); } catch (e) {} }
+  });
+
+  /* Open/close. <dialog>.showModal() gives us the focus trap, Escape handling
+     and focus restoration for free; the fallback is for very old browsers. */
+  function openA11y() {
+    if (!a11yDialog) return;
+    if (typeof a11yDialog.showModal === 'function') a11yDialog.showModal();
+    else a11yDialog.setAttribute('open', '');
+  }
+  document.querySelectorAll('[data-a11y-open]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); openA11y(); });
+  });
+  document.querySelectorAll('[data-a11y-close]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (!a11yDialog) return;
+      if (typeof a11yDialog.close === 'function') a11yDialog.close();
+      else a11yDialog.removeAttribute('open');
+    });
+  });
+  if (a11yDialog) a11yDialog.addEventListener('click', function (e) {
+    if (e.target === a11yDialog) a11yDialog.close();
   });
 })();

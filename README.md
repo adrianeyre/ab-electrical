@@ -10,9 +10,9 @@ the wider East Midlands for over 25 years.
 live. The choice is saved to `localStorage` and applied before first paint (no flash).
 - **Standout animations** — animated glows and an orbiting logo emblem in the hero, count-up stats,
   scroll-reveal sections, hover micro-interactions, a sticky header with scroll shadow, and a
-  back-to-top button. All motion respects `prefers-reduced-motion`.
-- **Accessible** — WCAG-minded contrast, visible focus rings, a skip link, semantic headings,
-  ARIA labels, keyboard-friendly nav, 44px+ touch targets, and form errors announced politely.
+  back-to-top button. All motion respects `prefers-reduced-motion`, and can also be switched off
+  from the in-page **Accessibility** panel.
+- **Accessible — built to WCAG 2.2 Level AA** (see [Accessibility](#accessibility) below).
 - **No build step / no dependencies** — plain HTML, CSS and vanilla JS. Fonts from Google Fonts.
 - The contact form composes a pre-filled email to `abelectrical29@hotmail.com` (no backend required).
 
@@ -26,7 +26,8 @@ sitemap.xml           # single-page sitemap
 site.webmanifest      # PWA manifest (name, colours, icons)
 assets/
   styles.css          # design tokens, theming, layout, animations
-  script.js           # theme, nav, scroll reveal, counters, scrollspy, form, cookie consent
+  script.js           # theme, nav, scroll reveal, counters, scrollspy, form, cookie consent,
+                      #   motion preference, accessibility dialog
   favicon.svg         # scalable brand mark
   favicon-16/32/48.png
   apple-touch-icon.png    # 180×180 iOS home-screen icon
@@ -37,10 +38,40 @@ assets/
 
 ## Privacy & cookies
 
-The site uses only essential/functional local storage (theme + cookie acknowledgement) and shows a
+The site uses only essential/functional local storage (theme, cookie acknowledgement, map opt-in
+and motion preference) and shows a
 dismissable notice with a full **Cookie Policy** modal. The Google Maps embed on the contact section
 is **not loaded until the visitor clicks "Enable map"**, so no third-party map cookies are set without
 consent. There are no analytics, tracking or advertising cookies.
+
+## Accessibility
+
+The site targets **WCAG 2.2 Level AA**. A footer **Accessibility** link (under *Cookie policy*)
+opens a statement covering conformance, known limitations and how to report a problem.
+
+Key points:
+
+- **Contrast** — every text/background pair meets 4.5:1, and UI boundaries, focus rings and
+  meaningful icons meet 3:1, in *both* themes. Colour tokens were chosen against the actual
+  surfaces they sit on rather than by eye.
+- **Focus** — a visible 3px ring on every control, never suppressed; dark panels swap to a white
+  ring so it stays visible. `scroll-padding-top` keeps focused targets clear of the sticky header
+  (2.4.11 Focus Not Obscured).
+- **Target size** — all controls resolve to at least 24×24px (2.5.8), except links inline in a
+  sentence, which the success criterion exempts.
+- **Motion** — `prefers-reduced-motion` is honoured, and a **Reduce motion** toggle in the
+  Accessibility panel disables all decorative animation and persists to `localStorage`
+  (`ab-motion`), giving 2.2.2 a mechanism independent of OS settings.
+- **Forms** — each error message is bound to its field with `aria-describedby`, an `role="alert"`
+  summary announces how many fields need attention, and errors are never signalled by colour alone.
+- **Structure** — one `<h1>`, no skipped heading levels, landmark regions, a skip link, and
+  scrollable regions that are reachable by keyboard.
+
+### Checking it
+
+Structural rules (roles, names, labels, heading order, ARIA references) can be audited headlessly
+with [axe-core](https://github.com/dequelabs/axe-core) over jsdom. Contrast ratios and target sizes
+need real layout, so check those in a browser with axe DevTools or Lighthouse.
 
 ## Run locally
 
