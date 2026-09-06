@@ -55,6 +55,9 @@
         if (t === 'light' || t === 'dark') {
           document.documentElement.setAttribute('data-theme', t);
         }
+        if (localStorage.getItem('ab-motion') === 'reduce') {
+          document.documentElement.setAttribute('data-motion', 'reduce');
+        }
       } catch (e) {}
     })();
   </script>
@@ -232,7 +235,7 @@
 
           <div class="hero-stats">
             <div class="stat"><div class="num" data-count="25" data-suffix="+">0</div><div class="lbl">years serving the East Midlands</div></div>
-            <div class="stat"><div class="num" data-count="2" data-plain="Domestic &amp; commercial">2</div><div class="lbl">domestic &amp; commercial work</div></div>
+            <div class="stat"><div class="num" data-count="2" data-plain="Domestic &amp; commercial">Domestic &amp; commercial</div><div class="lbl">domestic &amp; commercial work</div></div>
             <div class="stat"><div class="num">Free</div><div class="lbl">quotes at competitive prices</div></div>
           </div>
         </div>
@@ -266,7 +269,7 @@
           </a>
           <a class="block-card reveal" data-d="2" href="https://www.facebook.com/abelectricalnottinghamshire" target="_blank" rel="noopener">
             <span class="block-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></span>
-            <b>See our work here on Facebook</b>
+            <b>See our work here on Facebook<span class="sr-only"> (opens in a new tab)</span></b>
             <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </a>
           <a class="block-card reveal" data-d="3" href="#contact">
@@ -426,7 +429,7 @@
         <div class="tst-grid">
           <figure class="tst-card reveal" data-d="1">
             <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <div class="stars" aria-label="5 out of 5 stars">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg>
             </div>
             <p>Reliable, professional and tidy work with real attention to detail — exactly the standard you'd want in your own home.</p>
@@ -434,14 +437,14 @@
               <span class="avatar" aria-hidden="true">R</span>
               <div>
                 <b>Rosy</b>
-                <a href="https://www.facebook.com/rosy.best.3/posts/10158518934616564" target="_blank" rel="noopener">Read on Facebook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a href="https://www.facebook.com/rosy.best.3/posts/10158518934616564" target="_blank" rel="noopener">Read Rosy’s review<span class="sr-only"> on Facebook (opens in a new tab)</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
               </div>
             </figcaption>
           </figure>
 
           <figure class="tst-card reveal" data-d="2">
             <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <div class="stars" aria-label="5 out of 5 stars">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg>
             </div>
             <p>Friendly, punctual and great value. Explained everything clearly and left the job spotless. Wouldn't hesitate to recommend.</p>
@@ -449,14 +452,14 @@
               <span class="avatar" aria-hidden="true">T</span>
               <div>
                 <b>Tom</b>
-                <a href="https://www.facebook.com/tom.wright/posts/1456628077770402" target="_blank" rel="noopener">Read on Facebook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a href="https://www.facebook.com/tom.wright/posts/1456628077770402" target="_blank" rel="noopener">Read Tom’s review<span class="sr-only"> on Facebook (opens in a new tab)</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
               </div>
             </figcaption>
           </figure>
 
           <figure class="tst-card reveal" data-d="3">
             <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-            <div class="stars" aria-label="5 out of 5 stars">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 20.6l1.6-6.9L2 9.1l7-.6z"/></svg>
             </div>
             <p>Top-quality workmanship from a team you can genuinely trust. Compliant, safe and finished to a really high standard.</p>
@@ -464,7 +467,7 @@
               <span class="avatar" aria-hidden="true">B</span>
               <div>
                 <b>Boo</b>
-                <a href="https://www.facebook.com/boo.wright.167/posts/1910975118986888" target="_blank" rel="noopener">Read on Facebook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a href="https://www.facebook.com/boo.wright.167/posts/1910975118986888" target="_blank" rel="noopener">Read Boo’s review<span class="sr-only"> on Facebook (opens in a new tab)</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
               </div>
             </figcaption>
           </figure>
@@ -473,7 +476,7 @@
         <div style="text-align:center;margin-top:2rem" class="reveal">
           <a class="btn btn-ghost" href="https://www.facebook.com/abelectricalnottinghamshire" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
-            See all reviews on Facebook
+            See all reviews on Facebook<span class="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </div>
@@ -527,21 +530,26 @@
 
             <div class="field" id="f-name">
               <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" autocomplete="name" required aria-required="true" placeholder="e.g. Jane Smith" />
+              <input type="text" id="name" name="name" autocomplete="name" required aria-required="true"
+                     aria-describedby="err-name" placeholder="e.g. Jane Smith" />
               <span class="err" id="err-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Please enter your name.</span>
             </div>
 
             <div class="field" id="f-email">
               <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" placeholder="you@example.com" />
+              <input type="email" id="email" name="email" autocomplete="email" required aria-required="true"
+                     aria-describedby="err-email" placeholder="you@example.com" />
               <span class="err" id="err-email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Please enter a valid email address.</span>
             </div>
 
             <div class="field" id="f-message">
               <label for="message">How can we help? <span class="req" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" required aria-required="true" placeholder="Tell us about the work you need doing…"></textarea>
+              <textarea id="message" name="message" required aria-required="true"
+                        aria-describedby="err-message" placeholder="Tell us about the work you need doing…"></textarea>
               <span class="err" id="err-message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Please let us know how we can help.</span>
             </div>
+
+            <p class="form-error-summary sr-only" id="formErrors" role="alert"></p>
 
             <div class="form-alert" role="note">
               <span class="form-alert-ic" aria-hidden="true">
@@ -587,7 +595,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Explore</h4>
+          <h2 class="footer-col-title">Explore</h2>
           <ul>
             <li><a href="#about">About us</a></li>
             <li><a href="#services">Services</a></li>
@@ -595,11 +603,12 @@
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><button type="button" class="footer-linkbtn" data-cookie-open>Cookie policy</button></li>
+            <li><button type="button" class="footer-linkbtn" data-a11y-open>Accessibility</button></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h2 class="footer-col-title">Contact</h2>
           <ul>
             <li><a href="tel:01623431440">01623 431440</a></li>
             <li><a href="tel:07816920771">07816 920771</a></li>
@@ -607,7 +616,7 @@
             <li>Sutton-in-Ashfield, NG17 2DY</li>
           </ul>
           <div class="footer-social">
-            <a href="https://www.facebook.com/abelectricalnottinghamshire" target="_blank" rel="noopener" aria-label="A. B. Electrical on Facebook">
+            <a href="https://www.facebook.com/abelectricalnottinghamshire" target="_blank" rel="noopener" aria-label="A. B. Electrical on Facebook (opens in a new tab)">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
             </a>
             <a href="mailto:abelectrical29@hotmail.com" aria-label="Email A. B. Electrical">
@@ -651,14 +660,14 @@
   </div>
 
   <!-- ========================= COOKIE POLICY ========================= -->
-  <dialog class="cookie-dialog" id="cookieDialog" aria-labelledby="cookieTitle">
+  <dialog class="site-dialog" id="cookieDialog" aria-labelledby="cookieTitle">
     <div class="cd-head">
       <h3 id="cookieTitle">Cookie Policy</h3>
       <button type="button" class="cd-close" data-cookie-close aria-label="Close cookie policy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="cd-body">
+    <div class="cd-body" tabindex="0" role="region" aria-label="Cookie Policy, scrollable">
       <p class="policy-updated">Last updated: July 2026</p>
 
       <h4>About this policy</h4>
@@ -694,6 +703,12 @@
               <td>Until you clear it</td>
             </tr>
             <tr>
+              <td><code>ab-motion</code></td>
+              <td>Functional</td>
+              <td>Remembers whether you asked us to reduce on-screen motion in the Accessibility panel.</td>
+              <td>Until you clear it</td>
+            </tr>
+            <tr>
               <td><code>ab-maps-consent</code></td>
               <td>Functional</td>
               <td>Remembers that you chose to load the embedded Google Map on the contact section.</td>
@@ -704,10 +719,10 @@
       </div>
 
       <h4>Third-party services</h4>
-      <p>We load fonts from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>
+      <p>We load fonts from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts<span class="sr-only"> (opens in a new tab)</span></a>
         to display this site's typography. To deliver the fonts, Google may process your IP address;
         Google does not set cookies on this site for that purpose.</p>
-      <p>Our contact section can show an interactive <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Google Maps</a>
+      <p>Our contact section can show an interactive <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
         embed. Because Google may set its own cookies, the map does <strong>not</strong> load until you
         choose to enable it with the "Enable map" button on that section. If you don't enable it, no
         map cookies are set. No other third-party services are used on this page.</p>
@@ -729,6 +744,85 @@
     </div>
     <div class="cd-foot">
       <button type="button" class="btn btn-primary" data-cookie-close>Got it</button>
+    </div>
+  </dialog>
+
+  <!-- ======================= ACCESSIBILITY STATEMENT ======================= -->
+  <dialog class="site-dialog" id="a11yDialog" aria-labelledby="a11yTitle">
+    <div class="cd-head">
+      <h3 id="a11yTitle">Accessibility</h3>
+      <button type="button" class="cd-close" data-a11y-close aria-label="Close accessibility panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cd-body" tabindex="0" role="region" aria-label="Accessibility statement, scrollable">
+      <p class="policy-updated">Last updated: September 2026</p>
+
+      <p>We want everyone to be able to find an electrician and get in touch with us, whatever
+        device they use and however they browse the web. This page explains how accessible this
+        website is, and how to tell us if something isn&rsquo;t working for you.</p>
+
+      <h4>Your preferences</h4>
+      <div class="a11y-pref">
+        <span class="a11y-pref-text">
+          <b id="motionLabel">Reduce motion</b>
+          <span id="motionDesc">Turns off the animated background, moving logo and fade-in effects across the site.</span>
+        </span>
+        <label class="switch" for="motionToggle">
+          <input type="checkbox" id="motionToggle" aria-labelledby="motionLabel" aria-describedby="motionDesc" />
+          <span class="track" aria-hidden="true"></span>
+          <span class="switch-state" id="motionState" aria-hidden="true">Off</span>
+        </label>
+      </div>
+      <p>If your device or browser is already set to reduce motion, we follow that automatically —
+        you don&rsquo;t need to change anything here. You can also switch between a light, dark or
+        system colour theme using the theme button at the top of every page.</p>
+
+      <h4>Conformance status</h4>
+      <dl class="a11y-facts">
+        <dt>Standard</dt><dd>Web Content Accessibility Guidelines (WCAG) 2.2</dd>
+        <dt>Target level</dt><dd>Level AA</dd>
+        <dt>Status</dt><dd>This website has been built and tested to meet WCAG 2.2 Level AA.</dd>
+      </dl>
+
+      <h4>What we&rsquo;ve done</h4>
+      <ul class="a11y-list">
+        <li>Every control can be reached and operated with a keyboard alone, with a clearly visible
+          focus outline that stays clear of the sticky header.</li>
+        <li>Text meets a contrast ratio of at least 4.5:1, and buttons, form fields and meaningful
+          icons meet at least 3:1, in both the light and dark themes.</li>
+        <li>Buttons and controls are at least 24&nbsp;&times;&nbsp;24&nbsp;pixels, so they are easier
+          to hit with a finger, a stylus or an imprecise pointer.</li>
+        <li>The page is written with proper headings, landmarks, lists and labels, so screen readers
+          can navigate it structurally. A &ldquo;Skip to main content&rdquo; link is the first thing
+          you reach with the keyboard.</li>
+        <li>Form fields have visible labels, and any error is described in text next to the field it
+          belongs to &mdash; never by colour alone.</li>
+        <li>The layout reflows to a single column on small screens and when the page is zoomed in,
+          without a horizontal scrollbar.</li>
+        <li>All decorative animation can be switched off, either from your device settings or with
+          the toggle above.</li>
+      </ul>
+
+      <h4>Known limitations</h4>
+      <p>Our contact section can display an embedded map from Google Maps. That map is a third-party
+        component and we cannot control its accessibility, so it stays switched off until you choose
+        to load it. Our full address is always available as plain text directly above it, and you can
+        contact us by phone or email without using the map at all.</p>
+
+      <h4>Tell us about a problem</h4>
+      <p>If you find anything on this site you can&rsquo;t use, please tell us &mdash; we&rsquo;ll do
+        our best to put it right. Email <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a>
+        or call <a href="tel:01623431440">01623&nbsp;431440</a> and we&rsquo;ll help you directly,
+        including taking your enquiry over the phone.</p>
+
+      <h4>Enforcement</h4>
+      <p>If you contact us about a problem and you&rsquo;re not happy with our response, you can
+        contact the Equality Advisory and Support Service (EASS), which advises on accessibility
+        rights in the UK.</p>
+    </div>
+    <div class="cd-foot">
+      <button type="button" class="btn btn-primary" data-a11y-close>Got it</button>
     </div>
   </dialog>
 
