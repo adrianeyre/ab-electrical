@@ -720,37 +720,91 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
 .cookie-banner .cb-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 .cookie-banner .btn { min-height: 44px; padding: .6rem 1.2rem; font-size: .92rem; }
 
-/* Modal dialogs (native <dialog>) — cookie policy and accessibility statement */
-.site-dialog { border: none; padding: 0; max-width: 560px; width: calc(100% - 2rem);
-  border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-lg); }
-.site-dialog::backdrop { background: rgba(4, 12, 20, .55); backdrop-filter: blur(3px); }
-.site-dialog .cd-head { display: flex; align-items: flex-start; gap: 1rem; padding: 1.6rem 1.7rem 0; }
-.site-dialog h3 { margin: 0; font-size: 1.3rem; }
-.site-dialog .cd-close { margin-left: auto; width: 40px; height: 40px; flex: none; border-radius: 10px;
-  border: 1px solid var(--border-ui); background: var(--surface-2); color: var(--text); cursor: pointer;
-  display: grid; place-items: center; transition: border-color .2s var(--ease), transform .2s var(--ease); }
-.site-dialog .cd-close:hover { border-color: var(--brand-cyan); transform: translateY(-2px); }
-.site-dialog .cd-close svg { width: 18px; height: 18px; }
-.site-dialog .cd-body { padding: .4rem 1.7rem 0; max-height: min(66vh, 560px); overflow-y: auto; }
-.site-dialog .cd-body p { color: var(--text-muted); font-size: .95rem; }
-.site-dialog .cd-body h4 { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; margin: 1.4rem 0 .4rem; color: var(--text); }
-.site-dialog .cd-body strong { color: var(--text); font-weight: 600; }
-.policy-updated { font-size: .82rem; font-weight: 600; letter-spacing: .02em; color: var(--text-faint); text-transform: uppercase; margin: .2rem 0 .4rem; }
+/* ===================================================================
+   MODAL DIALOGS — cookie policy + accessibility statement
+   Visual system ported from the Belvoir Care site, mapped onto this
+   brand's tokens (Poppins headings, --accent, brand cyan).
+   Kept on a native <dialog> so focus trapping, Escape and focus
+   restoration come from the platform rather than from script.
+   =================================================================== */
+.modal {
+  width: min(calc(100% - 2rem), 640px);
+  max-height: min(86vh, 760px);
+  display: flex; flex-direction: column; overflow: hidden;
+  padding: 0;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.modal:not([open]) { display: none; }
+.modal[open] {
+  /* `inset: 0` with `height: auto` would stretch the box to the full viewport
+     height — `fit-content` keeps it content-sized, as the UA sheet does. */
+  position: fixed; inset: 0; margin: auto; z-index: 200;
+  height: fit-content;
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .modal[open] { animation: modal-in .35s var(--ease) both; }
+  @keyframes modal-in { from { transform: translateY(16px) scale(.98); opacity: 0; } }
+}
+.modal::backdrop { background: rgba(4, 12, 24, .58); backdrop-filter: blur(3px); }
+/* Non-modal fallback (no top layer, so no ::backdrop): paint our own. */
+.modal[data-fallback][open] { box-shadow: var(--shadow-lg), 0 0 0 100vmax rgba(4, 12, 24, .58); }
+html:has(.modal[data-fallback][open]) { overflow: hidden; }
+
+.modal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.3rem clamp(1.2rem, 4vw, 1.8rem);
+  border-bottom: 1px solid var(--border);
+}
+.modal-head h2 { margin: 0; font-size: 1.4rem; }
+.modal-close {
+  width: 40px; height: 40px; flex: none; display: grid; place-items: center;
+  border-radius: 11px; border: 1px solid var(--border-ui); background: var(--surface); color: var(--text);
+  cursor: pointer; transition: background-color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+}
+.modal-close:hover { background: var(--surface-2); border-color: var(--accent); transform: rotate(90deg); }
+.modal-close svg { width: 18px; height: 18px; }
+
+.modal-body { padding: clamp(1.2rem, 4vw, 1.8rem); overflow-y: auto; }
+.modal-body h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; color: var(--text); }
+.modal-body h3:first-child { margin-top: 0; }
+.modal-body p { color: var(--text-muted); font-size: .95rem; margin-bottom: .8rem; }
+.modal-body a { font-weight: 600; }
+.modal-body strong { color: var(--text); font-weight: 600; }
+/* ul/ol are list-style: none globally, so restore markers inside prose. */
+.modal-body ul { list-style: disc; padding-left: 1.3rem; margin: 0 0 .9rem; color: var(--text-muted); font-size: .95rem; }
+.modal-body ul li { margin-bottom: .4rem; }
+.modal-body ul li::marker { color: var(--accent); }
+.modal-body dl { margin: 0 0 .9rem; }
+.modal-body dt { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--text); font-size: .95rem; margin-top: .7rem; }
+.modal-body dt:first-child { margin-top: 0; }
+.modal-body dd { margin: .15rem 0 0; color: var(--text-muted); font-size: .95rem; }
+/* Scrollable regions inside a modal must be keyboard reachable (WCAG 2.1.1). */
+.modal-body:focus-visible, .cookie-table-scroll:focus-visible { outline: 3px solid var(--ring); outline-offset: -3px; border-radius: 6px; }
+
+.policy-updated { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.4rem; }
 .cookie-link { font: inherit; background: none; border: none; padding: 0; cursor: pointer;
   color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .cookie-link:hover { color: var(--accent-hover); }
 
 /* Storage table */
-.cookie-table-scroll { overflow-x: auto; margin: .6rem 0 .2rem; border: 1px solid var(--border); border-radius: var(--radius-sm); }
-.cookie-table { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 460px; }
-.cookie-table caption { text-align: left; caption-side: bottom; color: var(--text-faint); font-size: .78rem; padding: .5rem .2rem 0; }
-.cookie-table th, .cookie-table td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-.cookie-table thead th { background: var(--surface-2); font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text); white-space: nowrap; }
-.cookie-table tbody tr:last-child td { border-bottom: none; }
+.cookie-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cookie-table { width: 100%; border-collapse: collapse; margin: .4rem 0 .8rem; font-size: .88rem; min-width: 420px; }
+.cookie-table caption { text-align: left; color: var(--text-muted); font-size: .82rem; margin-bottom: .5rem; }
+.cookie-table th, .cookie-table td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.cookie-table th { font-family: 'Poppins', sans-serif; color: var(--text); font-weight: 700; font-size: .82rem; }
 .cookie-table td { color: var(--text-muted); }
-.cookie-table code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: .82rem; color: var(--accent); background: color-mix(in srgb, var(--brand-cyan) 12%, transparent); padding: .1rem .35rem; border-radius: 6px; white-space: nowrap; }
-.site-dialog .cd-foot { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: flex-end; padding: 1.3rem 1.7rem 1.6rem; }
-.site-dialog .cd-foot .btn { min-height: 44px; padding: .6rem 1.2rem; font-size: .92rem; }
+.cookie-table td code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: .85em;
+  color: var(--text); background: var(--surface-2); padding: .1rem .35rem; border-radius: 6px; white-space: nowrap; }
+
+.modal-foot {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: flex-end;
+  padding: 1.1rem clamp(1.2rem, 4vw, 1.8rem) 1.3rem;
+  border-top: 1px solid var(--border);
+}
+.modal-foot .btn { min-height: 44px; padding: .6rem 1.2rem; font-size: .92rem; }
 
 /* Map consent placeholder */
 .map-wrap { position: relative; }
@@ -789,16 +843,19 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
 .switch input:focus-visible + .track { outline: 3px solid var(--ring); outline-offset: 3px; }
 .switch .switch-state { font-size: .88rem; font-weight: 600; color: var(--text-muted); min-width: 3.2em; }
 
-/* Accessibility dialog: key/value list of conformance facts */
-.a11y-facts { display: grid; grid-template-columns: auto 1fr; gap: .35rem .9rem; margin: .2rem 0 .4rem; font-size: .9rem; }
-.a11y-facts dt { font-weight: 600; color: var(--text); font-family: 'Poppins', sans-serif; }
-.a11y-facts dd { margin: 0; color: var(--text-muted); }
-.a11y-list { display: grid; gap: .4rem; margin: .3rem 0 .2rem; padding-left: 1.1rem; list-style: disc; color: var(--text-muted); font-size: .92rem; }
-.a11y-list li { padding-left: .2rem; }
-.a11y-list::marker, .a11y-list li::marker { color: var(--accent); }
+/* Conformance callout at the top of the accessibility statement */
+.a11y-status {
+  display: flex; align-items: flex-start; gap: .8rem;
+  padding: .9rem 1.05rem; margin-bottom: 1.3rem;
+  background: color-mix(in srgb, var(--brand-cyan) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+.a11y-status svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--accent); margin-top: .15rem; }
+.a11y-status p { margin: 0; color: var(--text); font-size: .93rem; line-height: 1.55; }
+.a11y-status strong { font-family: 'Poppins', sans-serif; color: var(--accent); }
 
-/* Scrollable dialog body is keyboard-reachable (WCAG 2.1.1) */
-.site-dialog .cd-body:focus-visible { outline: 3px solid var(--ring); outline-offset: -3px; border-radius: 6px; }
 
 /* Footer link-style button */
 .footer-linkbtn { font: inherit; background: none; border: none; padding: 0; cursor: pointer;
@@ -810,6 +867,6 @@ a.contact-row:hover { transform: translateX(4px); border-color: var(--brand-cyan
   .cookie-banner { padding: 1rem 1.1rem; }
   .cookie-banner .cb-actions { width: 100%; }
   .cookie-banner .cb-actions .btn { flex: 1; }
-  .site-dialog .cd-foot { justify-content: stretch; }
-  .site-dialog .cd-foot .btn { flex: 1 1 auto; }
+  .modal-foot { justify-content: stretch; }
+  .modal-foot .btn { flex: 1 1 auto; }
 }

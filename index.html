@@ -66,7 +66,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/styles.css?v=2" />
 
   <!-- Structured data: local business + services for rich results -->
   <script type="application/ld+json">
@@ -660,30 +660,30 @@
   </div>
 
   <!-- ========================= COOKIE POLICY ========================= -->
-  <dialog class="site-dialog" id="cookieDialog" aria-labelledby="cookieTitle">
-    <div class="cd-head">
-      <h3 id="cookieTitle">Cookie Policy</h3>
-      <button type="button" class="cd-close" data-cookie-close aria-label="Close cookie policy">
+  <dialog class="modal" id="cookieDialog" aria-labelledby="cookieTitle">
+    <div class="modal-head">
+      <h2 id="cookieTitle">Cookie Policy</h2>
+      <button type="button" class="modal-close" data-cookie-close aria-label="Close cookie policy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="cd-body" tabindex="0" role="region" aria-label="Cookie Policy, scrollable">
+    <div class="modal-body" tabindex="0" role="region" aria-label="Cookie Policy, scrollable">
       <p class="policy-updated">Last updated: July 2026</p>
 
-      <h4>About this policy</h4>
+      <h3>About this policy</h3>
       <p>This policy explains how A. B. Electrical &amp; Maintenance uses cookies and similar
         technologies (such as your browser's local storage) on this website. Cookies and local storage
         are small pieces of data saved on your device that help a website function and remember your
         choices.</p>
 
-      <h4>How we use them</h4>
+      <h3>How we use them</h3>
       <p>We keep things deliberately minimal. This website uses only <strong>essential</strong> and
         <strong>functional</strong> storage. We do <strong>not</strong> use any analytics, tracking,
         profiling or advertising cookies, and we do not share this information with third parties for
         marketing.</p>
 
-      <h4>What we store</h4>
-      <div class="cookie-table-scroll">
+      <h3>What we store</h3>
+      <div class="cookie-table-scroll" tabindex="0" role="region" aria-label="What this site stores, scrollable">
         <table class="cookie-table">
           <caption>Items this site may save in your browser's local storage.</caption>
           <thead>
@@ -718,7 +718,7 @@
         </table>
       </div>
 
-      <h4>Third-party services</h4>
+      <h3>Third-party services</h3>
       <p>We load fonts from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts<span class="sr-only"> (opens in a new tab)</span></a>
         to display this site's typography. To deliver the fonts, Google may process your IP address;
         Google does not set cookies on this site for that purpose.</p>
@@ -727,42 +727,48 @@
         choose to enable it with the "Enable map" button on that section. If you don't enable it, no
         map cookies are set. No other third-party services are used on this page.</p>
 
-      <h4>Managing cookies and storage</h4>
+      <h3>Managing cookies and storage</h3>
       <p>You can clear or block cookies and local storage at any time through your browser settings —
         most browsers also let you do this per website. Blocking functional storage won't stop the site
         working, but it means your preferences (like your theme choice) won't be remembered between
         visits.</p>
 
-      <h4>Changes to this policy</h4>
+      <h3>Changes to this policy</h3>
       <p>We may update this policy from time to time to reflect changes to the site or to legal
         requirements. Any changes will be posted on this page with a revised "last updated" date.</p>
 
-      <h4>Contact us</h4>
+      <h3>Contact us</h3>
       <p>If you have any questions about this policy or how we handle your data, email us at
         <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a> or call
         <a href="tel:01623431440">01623&nbsp;431440</a>.</p>
     </div>
-    <div class="cd-foot">
+    <div class="modal-foot">
       <button type="button" class="btn btn-primary" data-cookie-close>Got it</button>
     </div>
   </dialog>
 
   <!-- ======================= ACCESSIBILITY STATEMENT ======================= -->
-  <dialog class="site-dialog" id="a11yDialog" aria-labelledby="a11yTitle">
-    <div class="cd-head">
-      <h3 id="a11yTitle">Accessibility</h3>
-      <button type="button" class="cd-close" data-a11y-close aria-label="Close accessibility panel">
+  <dialog class="modal" id="a11yDialog" aria-labelledby="a11yTitle">
+    <div class="modal-head">
+      <h2 id="a11yTitle">Accessibility</h2>
+      <button type="button" class="modal-close" data-a11y-close aria-label="Close accessibility panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="cd-body" tabindex="0" role="region" aria-label="Accessibility statement, scrollable">
-      <p class="policy-updated">Last updated: September 2026</p>
+    <div class="modal-body" tabindex="0" role="region" aria-label="Accessibility statement, scrollable">
+      <p class="policy-updated">Last reviewed: September 2026</p>
+
+      <div class="a11y-status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg>
+        <p>This website has been built and tested to meet
+          <strong>WCAG 2.2 Level AA</strong> &mdash; the standard UK public bodies are held to.</p>
+      </div>
 
       <p>We want everyone to be able to find an electrician and get in touch with us, whatever
         device they use and however they browse the web. This page explains how accessible this
         website is, and how to tell us if something isn&rsquo;t working for you.</p>
 
-      <h4>Your preferences</h4>
+      <h3>Your preferences</h3>
       <div class="a11y-pref">
         <span class="a11y-pref-text">
           <b id="motionLabel">Reduce motion</b>
@@ -778,15 +784,20 @@
         you don&rsquo;t need to change anything here. You can also switch between a light, dark or
         system colour theme using the theme button at the top of every page.</p>
 
-      <h4>Conformance status</h4>
-      <dl class="a11y-facts">
-        <dt>Standard</dt><dd>Web Content Accessibility Guidelines (WCAG) 2.2</dd>
-        <dt>Target level</dt><dd>Level AA</dd>
-        <dt>Status</dt><dd>This website has been built and tested to meet WCAG 2.2 Level AA.</dd>
+      <h3>Conformance status</h3>
+      <dl>
+        <dt>Standard</dt>
+        <dd>Web Content Accessibility Guidelines (WCAG) 2.2</dd>
+        <dt>Target level</dt>
+        <dd>Level AA</dd>
+        <dt>Scope</dt>
+        <dd>The whole of this website, in both the light and dark themes.</dd>
+        <dt>How it was checked</dt>
+        <dd>Automated testing with axe-core, plus manual keyboard, zoom and colour-contrast checks.</dd>
       </dl>
 
-      <h4>What we&rsquo;ve done</h4>
-      <ul class="a11y-list">
+      <h3>What we&rsquo;ve done</h3>
+      <ul>
         <li>Every control can be reached and operated with a keyboard alone, with a clearly visible
           focus outline that stays clear of the sticky header.</li>
         <li>Text meets a contrast ratio of at least 4.5:1, and buttons, form fields and meaningful
@@ -804,28 +815,28 @@
           the toggle above.</li>
       </ul>
 
-      <h4>Known limitations</h4>
+      <h3>Known limitations</h3>
       <p>Our contact section can display an embedded map from Google Maps. That map is a third-party
         component and we cannot control its accessibility, so it stays switched off until you choose
         to load it. Our full address is always available as plain text directly above it, and you can
         contact us by phone or email without using the map at all.</p>
 
-      <h4>Tell us about a problem</h4>
+      <h3>Tell us about a problem</h3>
       <p>If you find anything on this site you can&rsquo;t use, please tell us &mdash; we&rsquo;ll do
         our best to put it right. Email <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a>
         or call <a href="tel:01623431440">01623&nbsp;431440</a> and we&rsquo;ll help you directly,
         including taking your enquiry over the phone.</p>
 
-      <h4>Enforcement</h4>
+      <h3>Enforcement</h3>
       <p>If you contact us about a problem and you&rsquo;re not happy with our response, you can
         contact the Equality Advisory and Support Service (EASS), which advises on accessibility
         rights in the UK.</p>
     </div>
-    <div class="cd-foot">
+    <div class="modal-foot">
       <button type="button" class="btn btn-primary" data-a11y-close>Got it</button>
     </div>
   </dialog>
 
-  <script src="assets/script.js"></script>
+  <script src="assets/script.js?v=2"></script>
 </body>
 </html>
