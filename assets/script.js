@@ -191,19 +191,93 @@
     hideBanner();
   });
 
-  /* Policy dialog */
-  function openDialog() {
-    if (!dialog) return;
-    if (typeof dialog.showModal === 'function') dialog.showModal();
-    else dialog.setAttribute('open', '');
+  /* ---------- Modal dialogs (shared) ----------
+     showModal() gives us the top layer, a focus trap, Escape and focus
+     restoration for free. It is not guaranteed though: an older engine may not
+     implement it, and it throws if the dialog already carries [open]. Without a
+     fallback the dialog would render in normal flow after the footer — visually
+     absent, which reads as "the button does nothing". So every failure path
+     falls back to a positioned, backdropped, focus-trapped dialog instead. */
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+                  'textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  var lastTrigger = null;
+
+  function siblingsOf(el) {
+    return Array.prototype.filter.call(document.body.children, function (n) { return n !== el; });
   }
-  document.querySelectorAll('[data-cookie-open]').forEach(function (el) {
-    el.addEventListener('click', function (e) { e.preventDefault(); openDialog(); });
-  });
-  document.querySelectorAll('[data-cookie-close]').forEach(function (el) {
-    el.addEventListener('click', function () { if (dialog) dialog.close(); });
-  });
-  if (dialog) dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+  function setBackgroundInert(el, on) {
+    siblingsOf(el).forEach(function (n) {
+      if (on) { n.setAttribute('inert', ''); n.setAttribute('aria-hidden', 'true'); }
+      else { n.removeAttribute('inert'); n.removeAttribute('aria-hidden'); }
+    });
+  }
+  function focusFirst(el) {
+    var t = el.querySelector(FOCUSABLE);
+    if (t) t.focus();
+  }
+  function trapTab(e) {
+    var dlg = e.currentTarget;
+    if (e.key !== 'Tab') return;
+    var items = Array.prototype.filter.call(dlg.querySelectorAll(FOCUSABLE), function (n) {
+      return n.offsetWidth || n.offsetHeight || n.getClientRects().length;
+    });
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  function fallbackKeys(e) {
+    if (e.key === 'Escape') { e.preventDefault(); closeDialog(e.currentTarget); }
+    else trapTab(e);
+  }
+
+  function openDialog(dlg, trigger) {
+    if (!dlg || dlg.hasAttribute('open')) return;
+    lastTrigger = trigger || document.activeElement;
+    try {
+      if (typeof dlg.showModal !== 'function') throw new Error('no showModal');
+      dlg.showModal();
+      if (!dlg.hasAttribute('open')) throw new Error('showModal did not open');
+      return;
+    } catch (err) {
+      dlg.setAttribute('data-fallback', '');
+      dlg.setAttribute('open', '');
+      dlg.setAttribute('aria-modal', 'true');
+      dlg.setAttribute('role', 'dialog');
+      setBackgroundInert(dlg, true);
+      dlg.addEventListener('keydown', fallbackKeys);
+      focusFirst(dlg);
+    }
+  }
+
+  function closeDialog(dlg) {
+    if (!dlg) return;
+    if (dlg.hasAttribute('data-fallback')) {
+      dlg.removeEventListener('keydown', fallbackKeys);
+      setBackgroundInert(dlg, false);
+      dlg.removeAttribute('data-fallback');
+      dlg.removeAttribute('aria-modal');
+      dlg.removeAttribute('open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      return;
+    }
+    if (typeof dlg.close === 'function') dlg.close();
+    else dlg.removeAttribute('open');
+  }
+
+  /* Wire every [data-<name>-open] / [data-<name>-close] pair to its dialog. */
+  function wireDialog(dlg, key) {
+    if (!dlg) return;
+    document.querySelectorAll('[data-' + key + '-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openDialog(dlg, el); });
+    });
+    document.querySelectorAll('[data-' + key + '-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeDialog(dlg); });
+    });
+    /* Click on the backdrop area (the dialog's own box, outside its panel). */
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDialog(dlg); });
+  }
+  wireDialog(dialog, 'cookie');
 
   /* Embedded map: separate, in-context opt-in */
   function loadMap() {
@@ -244,24 +318,5 @@
     else { try { localStorage.removeItem(MOTION_KEY); } catch (e) {} }
   });
 
-  /* Open/close. <dialog>.showModal() gives us the focus trap, Escape handling
-     and focus restoration for free; the fallback is for very old browsers. */
-  function openA11y() {
-    if (!a11yDialog) return;
-    if (typeof a11yDialog.showModal === 'function') a11yDialog.showModal();
-    else a11yDialog.setAttribute('open', '');
-  }
-  document.querySelectorAll('[data-a11y-open]').forEach(function (el) {
-    el.addEventListener('click', function (e) { e.preventDefault(); openA11y(); });
-  });
-  document.querySelectorAll('[data-a11y-close]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      if (!a11yDialog) return;
-      if (typeof a11yDialog.close === 'function') a11yDialog.close();
-      else a11yDialog.removeAttribute('open');
-    });
-  });
-  if (a11yDialog) a11yDialog.addEventListener('click', function (e) {
-    if (e.target === a11yDialog) a11yDialog.close();
-  });
+  wireDialog(a11yDialog, 'a11y');
 })();
