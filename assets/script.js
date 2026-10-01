@@ -200,7 +200,9 @@
      falls back to a positioned, backdropped, focus-trapped dialog instead. */
   var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
                   'textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-  var lastTrigger = null;
+  /* Fallback dialogs can stack (a policy links to another policy), so each one
+     remembers its own trigger and the page is re-inerted around whatever is left. */
+  var fallbackStack = [];
 
   function siblingsOf(el) {
     return Array.prototype.filter.call(document.body.children, function (n) { return n !== el; });
@@ -233,7 +235,7 @@
 
   function openDialog(dlg, trigger) {
     if (!dlg || dlg.hasAttribute('open')) return;
-    lastTrigger = trigger || document.activeElement;
+    var opener = trigger || document.activeElement;
     try {
       if (typeof dlg.showModal !== 'function') throw new Error('no showModal');
       dlg.showModal();
@@ -244,6 +246,8 @@
       dlg.setAttribute('open', '');
       dlg.setAttribute('aria-modal', 'true');
       dlg.setAttribute('role', 'dialog');
+      if (fallbackStack.length) setBackgroundInert(fallbackStack[fallbackStack.length - 1].dlg, false);
+      fallbackStack.push({ dlg: dlg, trigger: opener });
       setBackgroundInert(dlg, true);
       dlg.addEventListener('keydown', fallbackKeys);
       focusFirst(dlg);
@@ -258,7 +262,13 @@
       dlg.removeAttribute('data-fallback');
       dlg.removeAttribute('aria-modal');
       dlg.removeAttribute('open');
-      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      var entry = null;
+      fallbackStack = fallbackStack.filter(function (f) {
+        if (f.dlg === dlg) { entry = f; return false; }
+        return true;
+      });
+      if (fallbackStack.length) setBackgroundInert(fallbackStack[fallbackStack.length - 1].dlg, true);
+      if (entry && entry.trigger && typeof entry.trigger.focus === 'function') entry.trigger.focus();
       return;
     }
     if (typeof dlg.close === 'function') dlg.close();
@@ -319,4 +329,8 @@
   });
 
   wireDialog(a11yDialog, 'a11y');
+
+  /* ---------- Privacy policy + terms and conditions ---------- */
+  wireDialog(document.getElementById('privacyDialog'), 'privacy');
+  wireDialog(document.getElementById('termsDialog'), 'terms');
 })();

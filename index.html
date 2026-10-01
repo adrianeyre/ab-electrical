@@ -602,6 +602,8 @@
             <li><a href="#accreditations">Accreditations</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button type="button" class="footer-linkbtn" data-privacy-open>Privacy policy</button></li>
+            <li><button type="button" class="footer-linkbtn" data-terms-open>Terms and conditions</button></li>
             <li><button type="button" class="footer-linkbtn" data-cookie-open>Cookie policy</button></li>
             <li><button type="button" class="footer-linkbtn" data-a11y-open>Accessibility</button></li>
           </ul>
@@ -837,6 +839,173 @@
     </div>
   </dialog>
 
-  <script src="assets/script.js?v=2"></script>
+  <!-- ========================= PRIVACY POLICY ========================= -->
+  <dialog class="modal" id="privacyDialog" aria-labelledby="privacyTitle">
+    <div class="modal-head">
+      <h2 id="privacyTitle">Privacy Policy</h2>
+      <button type="button" class="modal-close" data-privacy-close aria-label="Close privacy policy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" tabindex="0" role="region" aria-label="Privacy Policy, scrollable">
+      <p class="policy-updated">Last updated: October 2026</p>
+
+      <h3>Who we are</h3>
+      <p>A. B. Electrical &amp; Maintenance (&ldquo;we&rdquo;, &ldquo;us&rdquo;) is a local electrical
+        and maintenance business based in Sutton-in-Ashfield, Nottinghamshire. We are the controller of
+        the personal information described in this policy, which explains what we collect, why, and the
+        rights you have under UK data protection law (the UK GDPR and the Data Protection Act 2018).</p>
+
+      <h3>What we collect</h3>
+      <ul>
+        <li><strong>When you contact us</strong> &mdash; your name, email address, phone number, address
+          and the details of the work you need, whether you send them by email, phone, Facebook or the
+          contact form on this site.</li>
+        <li><strong>When we carry out work for you</strong> &mdash; the property address, access
+          arrangements, quotes, invoices, payment records and any certificates we issue for the work.</li>
+        <li><strong>When you browse this site</strong> &mdash; nothing that identifies you. We use only
+          the essential and functional storage described in our
+          <button type="button" class="cookie-link" data-cookie-open>Cookie Policy</button>, and no
+          analytics or advertising tracking.</li>
+      </ul>
+      <p>The contact form doesn&rsquo;t send anything to a server. It opens your own email app with
+        your message filled in, so nothing reaches us until you choose to send that email.</p>
+
+      <h3>How we use it, and our lawful basis</h3>
+      <ul>
+        <li>To reply to your enquiry and prepare a quote &mdash; <strong>taking steps at your request
+          before entering a contract</strong>.</li>
+        <li>To carry out, invoice and guarantee the work &mdash; <strong>performance of a
+          contract</strong>.</li>
+        <li>To register notifiable work and issue electrical certificates with our scheme provider
+          (NAPIT) and building control, and to keep tax and accounting records &mdash;
+          <strong>legal obligation</strong>.</li>
+        <li>To keep a record of past jobs so we can help with follow-up questions or warranty claims
+          &mdash; <strong>legitimate interests</strong>.</li>
+      </ul>
+      <p>We never sell your information, and we don&rsquo;t use it for marketing unless you&rsquo;ve
+        asked us to keep in touch.</p>
+
+      <h3>Who we share it with</h3>
+      <p>Only where it&rsquo;s needed to do the job or meet the law: our competent person scheme
+        (NAPIT), TrustMark, local authority building control, our accountant, HMRC, and our insurers if
+        a claim is made. Our email and phone providers handle messages on our behalf. Google provides
+        the fonts and the optional map on this site, as explained in our Cookie Policy.</p>
+
+      <h3>How long we keep it</h3>
+      <p>Enquiries that don&rsquo;t lead to work are deleted within 12 months. Job, invoice and
+        certificate records are kept for at least six years, as required for tax purposes and so we can
+        support you with any guarantee or safety question about work we&rsquo;ve done.</p>
+
+      <h3>Your rights</h3>
+      <p>You have the right to ask for a copy of the information we hold about you, and to ask us to
+        correct it, delete it, restrict how we use it, or object to us using it. Where we rely on
+        legitimate interests you can object at any time. We&rsquo;ll respond within one month, and
+        there&rsquo;s no charge.</p>
+      <p>If you&rsquo;re unhappy with how we&rsquo;ve handled your information, please tell us first.
+        You also have the right to complain to the Information Commissioner&rsquo;s Office (ICO) at
+        <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">ico.org.uk<span class="sr-only"> (opens in a new tab)</span></a>
+        or on 0303&nbsp;123&nbsp;1113.</p>
+
+      <h3>Changes to this policy</h3>
+      <p>We may update this policy from time to time. Any changes will be posted here with a revised
+        &ldquo;last updated&rdquo; date.</p>
+
+      <h3>Contact us</h3>
+      <p>To use any of your rights or ask about this policy, email us at <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a>, call
+        <a href="tel:01623431440">01623&nbsp;431440</a>, or write to us at A. B. Electrical &amp;
+        Maintenance, Sutton-in-Ashfield, NG17&nbsp;2DY.</p>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary" data-privacy-close>Got it</button>
+    </div>
+  </dialog>
+
+  <!-- ====================== TERMS AND CONDITIONS ====================== -->
+  <dialog class="modal" id="termsDialog" aria-labelledby="termsTitle">
+    <div class="modal-head">
+      <h2 id="termsTitle">Terms and Conditions</h2>
+      <button type="button" class="modal-close" data-terms-close aria-label="Close terms and conditions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" tabindex="0" role="region" aria-label="Terms and Conditions, scrollable">
+      <p class="policy-updated">Last updated: October 2026</p>
+
+      <h3>About these terms</h3>
+      <p>These terms apply to your use of this website and to any work A. B. Electrical &amp;
+        Maintenance (&ldquo;we&rdquo;, &ldquo;us&rdquo;) carries out for you, unless we agree something
+        different with you in writing. Nothing in these terms affects your statutory rights as a
+        consumer, including under the Consumer Rights Act 2015.</p>
+
+      <h3>Using this website</h3>
+      <p>This website is here to tell you about our services and help you get in touch. We work to
+        keep the information on it accurate and up to date, but it is general information and not a
+        quote or professional advice for your property. We may change or update the site at any time.
+        The content, logo and design of this site belong to us and must not be copied without our
+        permission.</p>
+
+      <h3>Quotes</h3>
+      <p>Quotes are free and are based on the information you give us and what we can see on the
+        day. A written quote is valid for 30 days. If we find something during the job that couldn&rsquo;t
+        reasonably have been seen beforehand &mdash; for example, hidden damage or unsafe existing
+        wiring &mdash; we&rsquo;ll stop, explain it and agree any extra cost with you before doing more.</p>
+
+      <h3>Our work</h3>
+      <ul>
+        <li>We carry out work with reasonable care and skill, to the current edition of BS&nbsp;7671
+          (the IET Wiring Regulations) and the Building Regulations where they apply.</li>
+        <li>Notifiable work is registered through our NAPIT scheme, and you&rsquo;ll receive the
+          relevant electrical certificate once the work is complete.</li>
+        <li>Materials we supply are new and fit for purpose, and carry their manufacturers&rsquo;
+          guarantees.</li>
+        <li>We&rsquo;ll agree a start date with you and let you know as soon as possible if anything
+          outside our control means it needs to change.</li>
+      </ul>
+
+      <h3>Your part</h3>
+      <p>Please give us safe access to the areas we need to work in, a power supply where needed, and
+        tell us about anything that could affect the job, such as known faults or asbestos. If we
+        can&rsquo;t get access at an agreed time without notice, we may need to rearrange.</p>
+
+      <h3>Payment</h3>
+      <p>Unless we agree otherwise, payment is due on completion of the work. For larger jobs we may
+        ask for a deposit, or for staged payments, which we&rsquo;ll set out in your quote. Materials
+        remain our property until they have been paid for in full.</p>
+
+      <h3>Cancelling</h3>
+      <p>If you agree to work at your home or away from our premises, you have 14 days to cancel
+        without giving a reason. If you ask us to start within those 14 days and then cancel, you may
+        need to pay for work already done and materials ordered specially for you. Emergency repairs
+        you ask us to carry out straight away can&rsquo;t be cancelled once the work is complete.</p>
+
+      <h3>If something isn&rsquo;t right</h3>
+      <p>Please tell us as soon as you can and we&rsquo;ll put it right. Our workmanship is covered for
+        12 months from completion, and as a TrustMark-registered business we follow its code of conduct
+        and complaints process. We hold public liability insurance. We aren&rsquo;t responsible for
+        faults in existing wiring or equipment we haven&rsquo;t worked on, or for losses that
+        weren&rsquo;t reasonably foreseeable, but we don&rsquo;t exclude liability for death or
+        personal injury caused by our negligence, or for anything else the law doesn&rsquo;t allow us
+        to exclude.</p>
+
+      <h3>Your information</h3>
+      <p>We handle the details you give us as described in our
+        <button type="button" class="cookie-link" data-privacy-open>Privacy Policy</button>.</p>
+
+      <h3>Governing law</h3>
+      <p>These terms are governed by the law of England and Wales, and any dispute can be heard by the
+        courts of England and Wales.</p>
+
+      <h3>Contact us</h3>
+      <p>If you have any questions about these terms, email us at <a href="mailto:abelectrical29@hotmail.com">abelectrical29@hotmail.com</a>, call
+        <a href="tel:01623431440">01623&nbsp;431440</a>, or write to us at A. B. Electrical &amp;
+        Maintenance, Sutton-in-Ashfield, NG17&nbsp;2DY.</p>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary" data-terms-close>Got it</button>
+    </div>
+  </dialog>
+
+  <script src="assets/script.js?v=3"></script>
 </body>
 </html>
