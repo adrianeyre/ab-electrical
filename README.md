@@ -27,7 +27,7 @@ site.webmanifest      # PWA manifest (name, colours, icons)
 assets/
   styles.css          # design tokens, theming, layout, animations
   script.js           # theme, nav, scroll reveal, counters, scrollspy, form, cookie consent,
-                      #   motion preference, accessibility dialog
+                      #   motion preference, accessibility, privacy and terms dialogs
   favicon.svg         # scalable brand mark
   favicon-16/32/48.png
   apple-touch-icon.png    # 180×180 iOS home-screen icon
@@ -43,6 +43,12 @@ and motion preference) and shows a
 dismissable notice with a full **Cookie Policy** modal. The Google Maps embed on the contact section
 is **not loaded until the visitor clicks "Enable map"**, so no third-party map cookies are set without
 consent. There are no analytics, tracking or advertising cookies.
+
+The footer also links to a **Privacy policy** modal (what personal data is collected, the UK GDPR
+lawful basis, retention, sharing and the visitor's rights, including complaining to the ICO) and a
+**Terms and conditions** modal (website use, quotes, workmanship, payment, the 14-day cancellation
+right and liability). Both reuse the shared dialog code in `script.js`, so they get the same focus
+handling, Escape-to-close and no-`showModal()` fallback as the other modals.
 
 ## Accessibility
 
